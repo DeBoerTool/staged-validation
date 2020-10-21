@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbt\LaravelProject\Tests\Unit;
+namespace Dbt\StagedValidation\Tests\Suites\Unit;
 
 class SampleTest extends UnitTestCase
 {

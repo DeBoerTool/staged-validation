@@ -1,13 +1,13 @@
 <?php
 
-namespace Dbt\LaravelProject\Tests\Integration;
+namespace Dbt\StagedValidation\Tests\Suites\Feature;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Session\Middleware\StartSession;
 use Orchestra\Testbench\TestCase as Orchestra;
 
-abstract class IntegrationTestCase extends Orchestra
+abstract class TestCase extends Orchestra
 {
     /**
      * Perform test application bootstrapping.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbt\LaravelProject;
+namespace Dbt\StagedValidation;
 
 use Illuminate\Support\ServiceProvider as LaravelProvider;
 
