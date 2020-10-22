@@ -2,6 +2,7 @@
 
 namespace Dbt\StagedValidation\Tests\Suites\Feature;
 
+use Dbt\StagedValidation\Tests\Infra\Stubs\RuleStub;
 use Dbt\StagedValidation\Tests\Infra\Stubs\StageBundleStub;
 use Dbt\StagedValidation\Tests\Infra\TestEntity;
 use Illuminate\Support\Facades\Route;
@@ -123,5 +124,21 @@ class ValidationTest extends TestCase
         $data = $response->getOriginalContent()['object'];
 
         $this->assertInstanceOf(TestEntity::class, $data->get('test_object_cached'));
+    }
+
+    /** @test */
+    public function stages_fail_early (): void
+    {
+        $response = $this->call('POST', self::ENDPOINT, []);
+
+        $this->assertSame(0, self::$called);
+
+        $response = $this->call('POST', self::ENDPOINT, [
+            'test_string' => 'some string',
+            'test_int' => '11',
+            'test_object' => 'this should fail'
+        ]);
+
+        $this->assertSame(1, self::$called);
     }
 }

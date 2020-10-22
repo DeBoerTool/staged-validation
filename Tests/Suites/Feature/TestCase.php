@@ -9,12 +9,17 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    /** @var int */
+    public static $called = 0;
+
     /**
      * Perform test application bootstrapping.
      */
     protected function setUp (): void
     {
         parent::setUp();
+
+        self::$called = 0;
     }
 
     /**
