@@ -14,11 +14,11 @@
 >
   <testsuites>
     <testsuite name="unit">
-      <directory>Tests/Unit</directory>
+      <directory>Tests/Suites/Unit</directory>
     </testsuite>
 
-    <testsuite name="integration">
-      <directory>Tests/Integration</directory>
+    <testsuite name="feature">
+      <directory>Tests/Suites/Feature</directory>
     </testsuite>
   </testsuites>
 

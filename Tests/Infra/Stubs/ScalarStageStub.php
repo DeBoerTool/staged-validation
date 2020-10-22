@@ -1,11 +1,16 @@
 <?php
 
-namespace Dbt\StagedValidation\Tests\Infra;
+namespace Dbt\StagedValidation\Tests\Infra\Stubs;
 
-use Dbt\StagedValidation\ScalarStage;
+use Dbt\StagedValidation\Stage;
 
-class ScalarStageStub implements ScalarStage
+class ScalarStageStub extends Stage
 {
+    public function name (): string
+    {
+        return 'scalar';
+    }
+
     public function rules (): array
     {
         return [
