@@ -46,4 +46,4 @@ jobs:
         run: Vendor/bin/php-cs-fixer --dry-run --config=.php_cs.dist --path-mode=intersection --verbose fix --format=checkstyle -- $(git diff --name-only --diff-filter=ACMRTUXB ${{ github.event.before }} ${{ github.sha }}) | cs2pr
 
       - name: PHPUnit Feature Suite
-        run: Vendor/bin/phpunit --configuration=phpunit.ci.xml --testsuite=Feature
+        run: Vendor/bin/phpunit --configuration=phpunit.ci.xml --testsuite=feature
