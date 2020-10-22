@@ -35,23 +35,25 @@ class StageValidator extends Validator
     }
 
     /**
-     * Override the base
+     * Override the base.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  \Illuminate\Contracts\Validation\Rule  $rule
-     * @return void
+     * @param string $attribute
+     * @param mixed $value
+     * @param \Illuminate\Contracts\Validation\Rule $rule
      */
     protected function validateUsingCustomRule ($attribute, $value, $rule): void
     {
-        if (! $rule->passes($attribute, $value)) {
+        if (!$rule->passes($attribute, $value)) {
             $this->failedRules[$attribute][get_class($rule)] = [];
 
             $messages = $rule->message() ? (array) $rule->message() : [get_class($rule)];
 
             foreach ($messages as $message) {
                 $this->messages->add($attribute, $this->makeReplacements(
-                    $message, $attribute, get_class($rule), []
+                    $message,
+                    $attribute,
+                    get_class($rule),
+                    []
                 ));
             }
         }

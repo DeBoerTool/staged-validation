@@ -20,7 +20,6 @@ abstract class TestCase extends Orchestra
     /**
      * Define environment setup.
      * @param \Illuminate\Foundation\Application $app
-     * @return void
      */
     protected function getEnvironmentSetUp ($app)
     {
@@ -30,23 +29,23 @@ abstract class TestCase extends Orchestra
         $config->set('database.default', 'mysql');
 
         $config->set('database.connections.mysql', [
-            'driver'   => env('DB_DRIVER'),
-            'host' =>  env('DB_HOST'),
+            'driver' => env('DB_DRIVER'),
+            'host' => env('DB_HOST'),
             'port' => env('DB_PORT'),
             'database' => env('DB_DATABASE'),
             'username' => env('DB_USERNAME'),
-            'prefix'   => env('DB_PASSWORD'),
+            'prefix' => env('DB_PASSWORD'),
         ]);
 
         $config->set('session', [
-            'driver'          => env('SESSION_DRIVER'),
-            'lifetime'        => 120,
+            'driver' => env('SESSION_DRIVER'),
+            'lifetime' => 120,
             'expire_on_close' => false,
-            'encrypt'         => false,
-            'lottery'         => [2, 100],
-            'path'            => '/',
-            'domain'          => 'localhost',
-            'secure'          => false,
+            'encrypt' => false,
+            'lottery' => [2, 100],
+            'path' => '/',
+            'domain' => 'localhost',
+            'secure' => false,
         ]);
 
         resolve(Kernel::class)->pushMiddleware(StartSession::class);

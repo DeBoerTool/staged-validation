@@ -2,10 +2,13 @@
 
 namespace Dbt\StagedValidation\Tests\Suites\Feature;
 
-use Dbt\StagedValidation\Tests\Infra\TestEntity;
 use Dbt\StagedValidation\Tests\Infra\Stubs\StageBundleStub;
+use Dbt\StagedValidation\Tests\Infra\TestEntity;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * @internal
+ */
 class ValidationTest extends TestCase
 {
     /** @var string */
@@ -29,7 +32,7 @@ class ValidationTest extends TestCase
     public function failing_scalar_validation (): void
     {
         $response = $this->call('POST', self::ENDPOINT, [
-            'test_int' => 'some string'
+            'test_int' => 'some string',
         ]);
 
         $response->assertSessionHasErrors([
@@ -54,7 +57,7 @@ class ValidationTest extends TestCase
         $response = $this->call('POST', self::ENDPOINT, [
             'test_string' => 'some string',
             'test_int' => '11',
-            'test_object' => 'test entity'
+            'test_object' => 'test entity',
         ]);
 
         $response->assertOk();
@@ -65,9 +68,9 @@ class ValidationTest extends TestCase
     public function getting_the_scalar_data (): void
     {
         $response = $this->call('POST', self::ENDPOINT, [
-            'test_string' => $string ='some string',
+            'test_string' => $string = 'some string',
             'test_int' => $int = '11',
-            'test_object' => 'test entity'
+            'test_object' => 'test entity',
         ]);
 
         /** @var \Illuminate\Support\Collection $data */
@@ -83,7 +86,7 @@ class ValidationTest extends TestCase
         $response = $this->call('POST', self::ENDPOINT, [
             'test_string' => 'some string',
             'test_int' => '11',
-            'test_object' => 'this should fail'
+            'test_object' => 'this should fail',
         ]);
 
         $response->assertSessionHasErrors([
@@ -97,7 +100,7 @@ class ValidationTest extends TestCase
         $response = $this->call('POST', self::ENDPOINT, [
             'test_string' => 'some string',
             'test_int' => '11',
-            'test_object' => 'test entity'
+            'test_object' => 'test entity',
         ]);
 
         $response->assertOk();
@@ -112,7 +115,7 @@ class ValidationTest extends TestCase
         $response = $this->call('POST', self::ENDPOINT, [
             'test_string' => 'some string',
             'test_int' => '11',
-            'test_object' => 'test entity'
+            'test_object' => 'test entity',
         ]);
 
         $response->assertOk();

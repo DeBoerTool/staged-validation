@@ -18,15 +18,16 @@
   ],
   "require": {
     "php": "^7.2",
-    "laravel/framework": "^6.0"
+    "illuminate/support": "^6.0"
   },
   "require-dev": {
-    "orchestra/testbench-browser-kit": "^4.0",
-    "orchestra/testbench": "^4.0",
-    "orchestra/database": "^4.0",
-    "friendsofphp/php-cs-fixer": "^2.15",
     "ext-pcov": "*",
+    "dbt/php-cs-fixer-config": "^1.0",
+    "friendsofphp/php-cs-fixer": "^2.15",
     "larapack/dd": "^1.1",
+    "orchestra/database": "^4.0",
+    "orchestra/testbench": "^4.0",
+    "orchestra/testbench-browser-kit": "^4.0",
     "phpunit/phpunit": "^8.0",
     "vimeo/psalm": "^3.1"
   },
@@ -41,11 +42,12 @@
     }
   },
   "scripts": {
-    "test-integration": "phpunit --configuration=phpunit.xml --no-coverage --testsuite integration",
+    "cs-dry": "php-cs-fixer fix --dry-run",
+    "cs": "php-cs-fixer fix",
+    "test-feature": "phpunit --configuration=phpunit.xml --no-coverage --testsuite feature",
     "test-unit": "phpunit --configuration=phpunit.xml --no-coverage --testsuite unit",
-    "test": ["@test-integration", "@test-unit"],
+    "test": ["@test-feature", "@test-unit"],
     "coverage": "phpunit --configuration=phpunit.xml --coverage-html Reports/Coverage",
-    "pcov": "php -d pcov.enabled=1 vendor/phpunit/phpunit/phpunit --coverage-html Reports/Coverage",
     "stat": "psalm"
   },
   "config": {
