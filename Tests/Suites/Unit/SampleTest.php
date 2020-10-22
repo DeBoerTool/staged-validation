@@ -2,6 +2,9 @@
 
 namespace Dbt\StagedValidation\Tests\Suites\Unit;
 
+/**
+ * @internal
+ */
 class SampleTest extends UnitTestCase
 {
     /** @test */

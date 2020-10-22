@@ -7,8 +7,6 @@ abstract class CachedRule implements CachedRuleInterface
     protected $cached;
 
     abstract public function message ();
-    abstract protected function fetch ();
-    abstract protected function passesAfterFetch ($attribute, $value);
 
     public function passes ($attribute, $value)
     {
@@ -21,6 +19,10 @@ abstract class CachedRule implements CachedRuleInterface
     {
         return $this->cached;
     }
+
+    abstract protected function fetch ();
+
+    abstract protected function passesAfterFetch ($attribute, $value);
 
     protected function setCached (): void
     {
