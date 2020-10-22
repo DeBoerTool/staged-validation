@@ -4,6 +4,7 @@ namespace Dbt\StagedValidation\Tests\Infra\Stubs;
 
 use Dbt\StagedValidation\CachedRule;
 use Dbt\StagedValidation\Tests\Infra\TestEntity;
+use Dbt\StagedValidation\Tests\Suites\Feature\TestCase;
 
 class RuleStub extends CachedRule
 {
@@ -14,6 +15,8 @@ class RuleStub extends CachedRule
 
     public function fetch ()
     {
+        TestCase::$called++;
+
         /**
          * This could be fetching from the database, fetching from an external
          * service, etc.
