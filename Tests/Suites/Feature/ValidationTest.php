@@ -2,7 +2,6 @@
 
 namespace Dbt\StagedValidation\Tests\Suites\Feature;
 
-use Dbt\StagedValidation\Tests\Infra\Stubs\RuleStub;
 use Dbt\StagedValidation\Tests\Infra\Stubs\StageBundleStub;
 use Dbt\StagedValidation\Tests\Infra\TestEntity;
 use Illuminate\Support\Facades\Route;
