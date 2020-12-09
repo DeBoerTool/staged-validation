@@ -1,0 +1,49 @@
+name: PHP Actions (PHP-CS-Fixer, PHPUnit, etc)
+
+on:
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  laravel:
+    runs-on: ubuntu-latest
+
+    name: Laravel (PHP 7.2)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.2
+          # The pcov extension needs to be specified as a coverage driver or
+          # the install will fail. Simply having it in the extensions list is
+          # not enough as it will not be enabled, only installed.
+          coverage: pcov
+          extensions: mbstring, pdo, pdo_mysql, intl, zip, json, pcov
+          # Allow converting tooling reports to inline annotations.
+          tools: cs2pr
+
+      - name: Composer Get Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Composer Cache Dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Composer Install
+        run:  composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+
+      - name: PHP-CS-Fixer Run
+        run: Vendor/bin/php-cs-fixer --dry-run --config=.php_cs.dist --path-mode=intersection --verbose fix --format=checkstyle -- $(git diff --name-only --diff-filter=ACMRTUXB ${{ github.event.before }} ${{ github.sha }}) | cs2pr
+
+      - name: PHPUnit Feature Suite
+        run: Vendor/bin/phpunit --configuration=phpunit.ci.xml --testsuite=feature

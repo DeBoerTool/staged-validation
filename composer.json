@@ -41,11 +41,12 @@
     }
   },
   "scripts": {
-    "test-integration": "phpunit --configuration=phpunit.xml --no-coverage --testsuite integration",
+    "cs-dry": "php-cs-fixer fix --dry-run",
+    "cs": "php-cs-fixer fix",
+    "test-feature": "phpunit --configuration=phpunit.xml --no-coverage --testsuite feature",
     "test-unit": "phpunit --configuration=phpunit.xml --no-coverage --testsuite unit",
-    "test": ["@test-integration", "@test-unit"],
+    "test": ["@test-feature", "@test-unit"],
     "coverage": "phpunit --configuration=phpunit.xml --coverage-html Reports/Coverage",
-    "pcov": "php -d pcov.enabled=1 vendor/phpunit/phpunit/phpunit --coverage-html Reports/Coverage",
     "stat": "psalm"
   },
   "config": {

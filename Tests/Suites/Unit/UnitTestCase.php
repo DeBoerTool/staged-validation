@@ -1,9 +1,14 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Dbt\StagedValidation\Tests\Suites\Unit;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class UnitTestCase extends TestCase
 {
     public static function rs (int $chars): string

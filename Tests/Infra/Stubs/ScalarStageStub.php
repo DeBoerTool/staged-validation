@@ -22,7 +22,7 @@ class ScalarStageStub extends Stage
             'test_int' => [
                 'integer',
                 'min:10',
-            ]
+            ],
         ];
     }
 }
