@@ -42,17 +42,6 @@ abstract class TestCase extends Orchestra
             'prefix' => env('DB_PASSWORD'),
         ]);
 
-        $config->set('session', [
-            'driver' => env('SESSION_DRIVER'),
-            'lifetime' => 120,
-            'expire_on_close' => false,
-            'encrypt' => false,
-            'lottery' => [2, 100],
-            'path' => '/',
-            'domain' => 'localhost',
-            'secure' => false,
-        ]);
-
         resolve(Kernel::class)->pushMiddleware(StartSession::class);
     }
 }
