@@ -19,7 +19,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.2
+          php-version: 8.0
           # The pcov extension needs to be specified as a coverage driver or
           # the install will fail. Simply having it in the extensions list is
           # not enough as it will not be enabled, only installed.
