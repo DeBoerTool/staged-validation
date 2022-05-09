@@ -8,7 +8,7 @@ jobs:
   laravel:
     runs-on: ubuntu-latest
 
-    name: Laravel (PHP 7.2)
+    name: Laravel (PHP 8.0)
 
     steps:
       - name: Checkout
@@ -43,7 +43,7 @@ jobs:
         run:  composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
 
       - name: PHP-CS-Fixer Run
-        run: Vendor/bin/php-cs-fixer --dry-run --config=.php_cs.dist --path-mode=intersection --verbose fix --format=checkstyle -- $(git diff --name-only --diff-filter=ACMRTUXB ${{ github.event.before }} ${{ github.sha }}) | cs2pr
+        run: Vendor/bin/php-cs-fixer --dry-run --config=.php-cs-fixer.dist.php --path-mode=intersection --verbose fix --format=checkstyle -- $(git diff --name-only --diff-filter=ACMRTUXB ${{ github.event.before }} ${{ github.sha }}) | cs2pr
 
       - name: PHPUnit Feature Suite
         run: Vendor/bin/phpunit --configuration=phpunit.ci.xml --testsuite=feature
