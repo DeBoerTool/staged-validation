@@ -9,19 +9,12 @@ use Illuminate\Validation\ValidationException;
 
 abstract class StageBundle implements StageBundleInterface
 {
-    /** @var \Illuminate\Http\Request */
-    protected $request;
+    protected Collection $payloads;
 
-    /** @var \Illuminate\Contracts\Validation\Factory */
-    protected $factory;
-
-    /** @var \Illuminate\Support\Collection */
-    protected $payloads;
-
-    public function __construct (Request $request, Factory $factory)
-    {
-        $this->request = $request;
-        $this->factory = $factory;
+    public function __construct (
+        protected Request $request,
+        protected Factory $factory,
+    ) {
         $this->payloads = new Collection([]);
     }
 

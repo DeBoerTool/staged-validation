@@ -135,7 +135,7 @@ class ValidationTest extends TestCase
         $response = $this->call('POST', self::ENDPOINT, [
             'test_string' => 'some string',
             'test_int' => '11',
-            'test_object' => 'this should fail'
+            'test_object' => 'this should fail',
         ]);
 
         $this->assertSame(1, self::$called);

@@ -9,7 +9,7 @@ $finder = Finder::create()->in([
 ]);
 
 $overrides = [
-    'php_unit_test_class_requires_covers' => 0,
+    'php_unit_test_class_requires_covers' => false,
 ];
 
 return Loader::new($finder, $overrides)->getConfig();
